@@ -26,6 +26,9 @@ transition(q0, X, q2) :-
 transition(q0, X, q3) :-
     X == '$'.
 
+transition(q3, X, q3) :-
+    X == '$'.
+
 transition(q1, X, q1) :-
     alphabet(A),
     member(X, A).
