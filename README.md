@@ -23,11 +23,19 @@ This DFA has the following states:
 - '_' at the beginning. 
 
 ### $q_3$ 
-- '$' at the beginning. 
+- **Valid state**. 
+- '$' at the beginning.
+- Java allows '$' as a valid identifier on its own. 
 
 ### $q_4$
 - **Valid state**. 
 - This state is reached when there is a number in the variable name. 
+
+
+### $q_5$
+#### TODO! - add transition functions for state q5
+- **Valid state**. 
+- Java allows '__' as a valid identifier on its own. 
 
 ## Diagram
 
@@ -63,6 +71,7 @@ __
 ```
 
 ### DFA chart
+#### TODO! - add transition functions for state q5
 
 ```mermaid
 graph LR
@@ -70,7 +79,7 @@ graph LR
     Q1 --Letter--> Q1
     Q0 --'_'--> Q2((Q2))
     Q1 --'_'--> Q2
-    Q2 --'_'--> Q2
+    Q2 --'_'--> Q1
     Q2 --Letter--> Q1
     Q1 --Digit--> Q4((Q4))
     Q4 --Digit--> Q4

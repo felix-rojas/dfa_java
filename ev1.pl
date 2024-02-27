@@ -1,13 +1,15 @@
 % Define the DFA states
 state(q0). % initial state, no input
 state(q1). % accepting state
-state(q2). % underscore state
+state(q2). % has a single underscore state
 state(q3). % dollar state
 state(q4). % has number state
+state(q5). % has > 1 underscores state
 
 % Accepting and initial states
 accepting(q1).
 accepting(q4).
+accepting(q5).
 initial(q0).
 
 % Define the alphabet
@@ -15,6 +17,7 @@ alphabet([a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,
           'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']).
 
 % transition functions
+% TODO! - add transition functions for state q5
 
 transition(q0, X, q1) :-
     alphabet(A), % unify list to A
