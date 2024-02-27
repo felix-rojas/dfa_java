@@ -25,12 +25,44 @@ This DFA has the following states:
 ### $q_3$ 
 - '$' at the beginning. 
 
-
 ### $q_4$
 - **Valid state**. 
 - This state is reached when there is a number in the variable name. 
 
 ## Diagram
+
+- Q0 represents the initial state
+- Accepting states are defined in blue outline (Q1 and Q4)
+- Letter represents any alphabetic character, regardless of capitalization
+- Digit represents any digit
+
+## Regex expression
+`^(?!_$)[a-zA-Z$_][a-zA-Z\d_$]*$`
+### Breakdown
+- `^(?!_$)` means to make sure that the first position "^", by looking ahead "?" that there is NOT "!" a single "_" that simply ends "$".
+- `[a-zA-Z$_]` means any character in the range of a-z or A-Z or "$" or "_".
+- `[a-zA-Z\d$_]*` means any character mentioned previously or any digit "\d" or "$" or "_". The asterisk (star operator) means there can be from 0 to any number of the characters stated in the group enclosed by brackets.
+- Finally the $ just means this is the end of the string.
+
+### Examples of valid identifiers
+```
+$astrid
+$$aa
+a$A$a$_
+A$a
+$as1111
+$____$$$$
+$$$as$$
+$
+$
+a_
+_a
+_9
+_$
+__
+```
+
+### DFA chart
 
 ```mermaid
 graph LR
@@ -42,11 +74,12 @@ graph LR
     Q2 --Letter--> Q1
     Q1 --Digit--> Q4((Q4))
     Q4 --Digit--> Q4
-    Q0 --'_'--> Q3((Q3))
-    Q3--'_'--> Q3
+    Q0 --'$'--> Q3((Q3))
+    Q3--'$'--> Q3
     Q3--Letter--> Q1
     Q4 --Letter--> Q1
     style Q0 fill:#f9fff,stroke:#ffff,stroke-width:3px
     style Q1 fill:#f9fff,stroke:#333fff,stroke-width:3px
+    style Q3 fill:#f9fff,stroke:#333fff,stroke-width:3px
     style Q4 fill:#f9fff,stroke:#333fff,stroke-width:3px
 ```
