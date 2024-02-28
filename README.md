@@ -36,7 +36,7 @@ This DFA has the following states:
 - Letter represents any alphabetic character, regardless of capitalization
 - Digit represents any digit
 
-## Regex expression
+## Regex 
 `^(?!_$)[a-zA-Z$_][a-zA-Z\d_$]*$`
 ### Breakdown
 - `^(?!_$)` means to make sure that the first position "^", by looking ahead "?" that there is NOT "!" a single "_" that simply ends "$".
@@ -53,7 +53,7 @@ A$a
 $as1111
 $____$$$$
 $$$as$$
-$
+$_
 $
 a_
 _a
