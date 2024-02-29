@@ -1,0 +1,26 @@
+% All of these must be false
+dfa("12"),
+dfa("1_2"),
+dfa("1$2"),
+dfa("1 2"),
+dfa(" "),
+dfa(" _"),
+dfa("_ _"),
+dfa("$ ").
+
+% All of these must be true
+dfa("$astrid"),
+dfa("$$aa"),
+dfa("a$A$a$_"),
+dfa("A$a"),
+dfa("$as1111"),
+dfa("$____$$$$"),
+dfa("$$$as$$"),
+dfa("$"),
+dfa("$$"),
+dfa("$_$"),
+dfa("a_"),
+dfa("_a"),
+dfa("_9"),
+dfa("_$"),
+dfa("__").
