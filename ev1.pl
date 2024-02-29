@@ -1,16 +1,18 @@
 % Define the DFA states
 state(q0). % initial state, no input
-state(q1). % accepting state
+state(q1). % alphabet state
 state(q2). % has a single underscore state
 state(q3). % dollar state
 state(q4). % has number state
 state(q5). % has > 1 underscores state
 
 % Accepting and initial states
-accepting(q1).
-accepting(q4).
-accepting(q5).
 initial(q0).
+
+accepting(q1).
+accepting(q3). % any number of $ are valid identifiers
+accepting(q4). 
+accepting(q5).
 
 % Define the alphabet
 alphabet([a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,
@@ -39,6 +41,9 @@ transition(q1, X, q1) :-
 transition(q1, X, q2) :-
     X == '_'.
 
+transition(q3, X, q4) :-
+    number(X).
+
 transition(q1, X, q4) :-
     number(X).
 
@@ -52,8 +57,18 @@ transition(q4, X, q1) :-
 transition(q4, X, q2) :-
     X == '_'.
 
-transition(q2, X, q2) :-
+transition(q2, X, q5) :-
     X == '_'.
+
+transition(q2, X, q4) :-
+    number(X).
+
+transition(q5, X, q5) :-
+    X == '_'.
+
+transition(q5, X, q1) :-
+    alphabet(A),
+    member(X, A).
 
 transition(q2, X, q1) :-
     alphabet(A),
