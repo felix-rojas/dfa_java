@@ -7,6 +7,9 @@ variable name.
 - Must begin with a letter, '$' or  '_'
 - Cannot contain whitespace
 - Cannot contain special characters besides underscores, and dollar signs
+- Cannot be a single underscore
+- Cannot start with a digit
+- Cannot be a reserved keyword
 
 ## States
 
@@ -33,16 +36,9 @@ This DFA has the following states:
 
 
 ### $q_5$
-#### TODO! - add transition functions for state q5
 - **Valid state**. 
-- Java allows '__' as a valid identifier on its own. 
-
-## Diagram
-
-- Q0 represents the initial state
-- Accepting states are defined in blue outline (Q1 and Q4)
-- Letter represents any alphabetic character, regardless of capitalization
-- Digit represents any digit
+- Java allows '__' as a valid identifier on its own.
+- This state is necessary to differentiate when there is a single underscore at the beginning or multiple ones. 
 
 ## Regex 
 `^(?!_$)[a-zA-Z$_][a-zA-Z\d_$]*$`
@@ -71,7 +67,11 @@ __
 ```
 
 ### DFA chart
-#### TODO! - add transition functions for state q5
+
+- Q0 represents the initial state
+- Accepting states are defined in thick blue outline:
+  - Q1, Q3, Q4, Q5
+- Letter represents any alphabetic character, regardless of capitalization
 
 ```mermaid
 graph LR
