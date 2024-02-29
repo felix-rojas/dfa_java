@@ -74,33 +74,49 @@ __
 - Letter represents any alphabetic character, regardless of capitalization
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
+
 graph LR
-    Q0((Q0)) --Letter--> Q1((Q1))
-    Q0 --'_'--> Q2((Q2))
-    Q0 --'$'--> Q3((Q3))
-    Q1 --Letter--> Q1
-    Q1 --'$'--> Q3
-    Q1 --Digit--> Q4((Q4))
-    Q1 --'_'--> Q5((Q5))
-    Q2 --Letter--> Q1
-    Q2 --'$'--> Q3
-    Q2 --Digit--> Q4
-    Q2 --'_'--> Q5
-    Q3--Letter--> Q1
-    Q3--'$'--> Q3
-    Q3--Digit--> Q4
-    Q3--'_'--> Q5
-    Q4 --Letter--> Q1
-    Q4 --'_'--> Q2
-    Q4 --Digit--> Q4
-    Q5 --Letter--> Q1
-    Q5 --'$'--> Q3
-    Q5 --Digit--> Q4
-    Q5 --'_'--> Q5
+    Q0(("`*q_0*`"))
+    Q1(("`*q_1*`"))
+    Q2(("`*q_2*`"))
+    Q3(("`*q_3*`"))
+    Q4(("`*q_4*`"))
+    Q5(("`*q_5*`"))
+    
+    Q0 -. Letter .-> Q1
+    Q0 -.'_'.-> Q2
+    Q0 -.'$'.-> Q3
+    Q1 -.Letter.-> Q1
+    Q1 -.'$'.-> Q3
+    Q1 -.Digit.-> Q4
+    Q1 -.'_'.-> Q5
+    Q2 -.Letter.-> Q1
+    Q2 -.'$'.-> Q3
+    Q2 -.Digit.-> Q4
+    Q2 -.'_'.-> Q5
+    Q3 -.Letter.-> Q1
+    Q3 -.'$'.-> Q3
+    Q3 -.Digit.-> Q4
+    Q3 -.'_'.-> Q5
+    Q4 -.Letter.-> Q1
+    Q4 -.'_'.-> Q2
+    Q4 -.Digit.-> Q4
+    Q5 -.Letter.-> Q1
+    Q5 -.'$'.-> Q3
+    Q5 -.Digit.-> Q4
+    Q5 -.'_'.-> Q5
     
     style Q0 fill:#f9fff,stroke:#ffff,stroke-width:3px
-    style Q1 fill:#f9fff,stroke:#333fff,stroke-width:3px
-    style Q3 fill:#f9fff,stroke:#333fff,stroke-width:3px
-    style Q4 fill:#f9fff,stroke:#333fff,stroke-width:3px
-    style Q5 fill:#f9fff,stroke:#333fff,stroke-width:3px
+    style Q1 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    style Q3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    style Q4 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    style Q5 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    
+    linkStyle 0,1,2 stroke:blue,stroke-width:2px;
+    linkStyle 3,4,5,6 stroke:green,stroke-width:2px;
+    linkStyle 7,8,9,10 stroke:yellow,stroke-width:2px;
+    linkStyle 11,12,13,14 stroke:magenta,stroke-width:2px;
+    linkStyle 15,16,17 stroke:white,stroke-width:2px;
+    linkStyle 18,19,20,21 stroke:red,stroke-width:2px;
 ```
