@@ -76,19 +76,31 @@ __
 ```mermaid
 graph LR
     Q0((Q0)) --Letter--> Q1((Q1))
-    Q1 --Letter--> Q1
     Q0 --'_'--> Q2((Q2))
-    Q1 --'_'--> Q2
-    Q2 --'_'--> Q1
-    Q2 --Letter--> Q1
-    Q1 --Digit--> Q4((Q4))
-    Q4 --Digit--> Q4
     Q0 --'$'--> Q3((Q3))
-    Q3--'$'--> Q3
+    Q1 --Letter--> Q1
+    Q1 --'$'--> Q3
+    Q1 --Digit--> Q4((Q4))
+    Q1 --'_'--> Q5((Q5))
+    Q2 --Letter--> Q1
+    Q2 --'$'--> Q3
+    Q2 --Digit--> Q4
+    Q2 --'_'--> Q5
     Q3--Letter--> Q1
+    Q3--'$'--> Q3
+    Q3--Digit--> Q4
+    Q3--'_'--> Q5
     Q4 --Letter--> Q1
+    Q4 --'_'--> Q2
+    Q4 --Digit--> Q4
+    Q5 --Letter--> Q1
+    Q5 --'$'--> Q3
+    Q5 --Digit--> Q4
+    Q5 --'_'--> Q5
+    
     style Q0 fill:#f9fff,stroke:#ffff,stroke-width:3px
     style Q1 fill:#f9fff,stroke:#333fff,stroke-width:3px
     style Q3 fill:#f9fff,stroke:#333fff,stroke-width:3px
     style Q4 fill:#f9fff,stroke:#333fff,stroke-width:3px
+    style Q5 fill:#f9fff,stroke:#333fff,stroke-width:3px
 ```

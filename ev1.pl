@@ -42,14 +42,14 @@ transition(q1, X, q1) :-
     alphabet(A),
     member(X, A).
 
-transition(q1, X, q5) :-
-    X == '_'.
-
 transition(q1, X, q3) :-
     X == '$'.
 
 transition(q1, X, q4) :-
     char_type(X,digit).
+
+transition(q1, X, q5) :-
+    X == '_'.
 
 transition(q2, X, q1) :-
     alphabet(A),
@@ -68,14 +68,14 @@ transition(q3, X, q1) :-
     alphabet(A),
     member(X, A).
 
-transition(q3, X, q5) :-
-    X == '_'.
-
 transition(q3, X, q3) :-
     X == '$'.
-
+    
 transition(q3, X, q4) :-
     char_type(X,digit).
+
+transition(q3, X, q5) :-
+    X == '_'.
 
 transition(q4, X, q1) :-
     alphabet(A),
