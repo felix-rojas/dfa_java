@@ -66,7 +66,10 @@ _$
 __
 ```
 
-### DFA chart
+### DFA chart for keywords
+
+
+### DFA chart for valid identifiers
 
 - Q0 represents the initial state
 - Accepting states are defined in thick blue outline:

@@ -1,5 +1,83 @@
+ :- discontiguous transition/3, state/1, initial/1.
+
 % Define the DFA states
-state(q0). % initial state, no input
+state(keyword_check).  % initial state for kwd checking
+state(p0).   % 'p' has been input as the first char
+
+state(pu1).  % 'u' has been input
+state(pu2).  % 'b' has been input
+state(pu3).  % 'l' has been input
+state(pu4).  % 'i' has been input
+state(pu5).  % 'c' has been input
+
+state(pr1).  % 'r' has been input
+state(pr2).  % 'i' has been input
+state(pr3).  % 'v' has been input
+state(pr4).  % 'a' has been input
+state(pr5).  % 't' has been input
+state(pr6).  % 'e' has been input
+
+state(m0).   % 'm' has been input
+state(m1).   % 'a' has been input
+state(m2).   % 'i' has been input
+state(m3).   % 'n' has been input
+
+state(v0).   % 'v' has been input
+state(v1).   % 'o' has been input
+state(v2).   % 'i' has been input
+state(v3).   % 'd' has been input
+
+state(i0).   % 'i' has been input
+state(i1).   % 'n' has been input
+state(i2).   % 't' has been input
+
+% Accepting and initial states
+initial(keyword_check).
+kwd_accepting(pu5).
+kwd_accepting(pr6).
+kwd_accepting(v3).
+kwd_accepting(i2).
+kwd_accepting(m3).
+
+% Common starting alphabet
+kwd_alphabet(['p','m','v','i']).
+
+transition(q0, X, keyword_check):-
+    kwd_alphabet(Kwd),
+    member(X,Kwd).
+
+transition(keyword_check, X, p0):- X == 'p'.
+transition(p0, X, pr1):-           X == 'r'.
+transition(pr1, X, pr2):-          X == 'i'.
+transition(pr2, X, pr3):-          X == 'v'.
+transition(pr3, X, pr4):-          X == 'a'.
+transition(pr4, X, pr5):-          X == 't'.
+transition(pr5, X, pr6):-          X == 'e'.
+
+transition(p0, X, pu1)  :- X == 'u'.
+transition(pu1, X, pu2) :- X == 'b'.
+transition(pu2, X, pu3) :- X == 'l'.
+transition(pu3, X, pu4) :- X == 'i'.
+transition(pu4, X, pu5) :- X == 'c'.
+
+transition(keyword_check, X, m0):- X == 'm'.
+transition(m0, X, m1):-            X == 'a'.
+transition(m1, X, m2):-            X == 'i'.
+transition(m2, X, m3):-            X == 'n'.
+
+
+transition(keyword_check, X, v0):- X == 'v'.
+transition(v0, X, v1):-            X == 'o'.
+transition(v1, X, v2):-            X == 'i'.
+transition(v2, X, v3):-            X == 'd'.
+
+transition(keyword_check, X, i0):- X == 'i'.
+transition(i0, X, i1):-            X == 'n'.
+transition(i1, X, i2):-            X == 't'.
+
+
+% Define the DFA states
+state(q0). % initial state, no keywords
 state(q1). % alphabet state
 state(q2). % has a single beginning underscore state
 state(q3). % dollar state
@@ -13,14 +91,6 @@ accepting(q1).
 accepting(q3). % any number of $ are valid identifiers
 accepting(q4). 
 accepting(q5).
-
-% Keyword sample
-keyword("public").
-keyword("private").
-keyword("void").
-keyword("main").
-keyword("int").
-keyword("float").
 
 % transition functions
 
@@ -92,8 +162,14 @@ transition(q5, X, q5) :-
 
 
 % Base case, empty list and state accepting
+
+accepts(State, []) :-
+    kwd_accepting(State),!,
+    write("Keyword state\n").
+
 accepts(State, []) :-
     accepting(State),
+    not(kwd_accepting(State)),
     write("Accepted state\n").
 
 % iterate each head on string
