@@ -68,6 +68,25 @@ __
 
 ### DFA chart for keywords
 
+```mermaid
+%%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
+
+graph LR
+    K(("`*keyword_check*`"))
+    M0(("`*m_0*`"))
+    M1(("`*m_1*`"))
+    M2(("`*m_2*`"))
+    M3(("`*m_3*`"))
+    
+    K  -.m.-> M0
+    M0 -.a.-> M1
+    M1 -.i.-> M2
+    M2 -.n.-> M3
+    
+    style K fill:#f9fff,stroke:#ffff,stroke-width:3px
+    style M3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    
+```
 
 ### DFA chart for valid identifiers
 
