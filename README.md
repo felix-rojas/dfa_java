@@ -130,10 +130,10 @@ graph LR
     M2(("`*m_2*`"))
     M3(("`*m_3*`"))
     
-    K  -.m.-> M0
-    M0 -.a.-> M1
-    M1 -.i.-> M2
-    M2 -.n.-> M3
+    K  -..->|m| M0
+    M0 -..->|a| M1
+    M1 -..->|i| M2
+    M2 -..->|n| M3
     
     style K fill:#f9fff,stroke:#ffff,stroke-width:3px
     style M3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
@@ -150,10 +150,10 @@ graph LR
     V2(("`*v_2*`"))
     V3(("`*v_3*`"))
     
-    K-.'v'.-> V0
-    V0-.'o'.->V1
-    V1-.'i'.->V2
-    V2-.'d'.->V3
+    K-..->|v|V0
+    V0-..->|o|V1
+    V1-..->|i|V2
+    V2-..->|d|V3
     
     style K fill:#f9fff,stroke:#ffff,stroke-width:3px
     style V3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
