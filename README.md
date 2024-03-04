@@ -186,6 +186,7 @@ graph LR
 ### DFA chart for valid identifiers
 
 - Q0 represents the initial state
+- K represents the initial state for the keyword automata
 - Accepting states are defined in thick blue outline:
   - Q1, Q3, Q4, Q5
 - Letter represents any alphabetic character, regardless of capitalization
@@ -194,7 +195,7 @@ graph LR
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
 graph LR
-    K(("`*K*`"))
+    K(("`*KWD*`"))
     Q0(("`*q_0*`"))
     Q1(("`*q_1*`"))
     Q2(("`*q_2*`"))
@@ -224,7 +225,7 @@ graph LR
     Q5 -.'$'.-> Q3
     Q5 -.Digit.-> Q4
     Q5 -.'_'.-> Q5
-    Q0 -. kwd_alphabet .-> K
+    Q0 -. Keyword .-> K
     
     style Q0 fill:#f9fff,stroke:#ffff,stroke-width:3px
     style Q1 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
