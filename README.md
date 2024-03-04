@@ -68,6 +68,58 @@ __
 
 ### DFA chart for keywords
 
+Every reserved keyword could have its own DFA so I chose 5 keywords, where some of these overlap and some don't.
+
+The list of used keywords is as follows:
+
+- public
+- private
+- main
+- void
+- int
+
+#### public & private keywords
+
+```mermaid
+%%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
+
+graph LR
+    K(("`*keyword_check*`"))
+    P0(("`*p_0*`"))
+    PU1(("`*pu_1*`"))
+    PU2(("`*pu_2*`"))
+    PU3(("`*pu_3*`"))
+    PU4(("`*pu_4*`"))
+    PU5(("`*pu_5*`"))
+    
+    PR1(("`*pr_1*`"))
+    PR2(("`*pr_2*`"))
+    PR3(("`*pr_3*`"))
+    PR4(("`*pr_4*`"))
+    PR5(("`*pr_5*`"))
+    PR6(("`*pr_6*`"))
+
+    K  -.p.-> P0
+    P0 -.u.-> PU1
+    PU1 -.b.-> PU2
+    PU2 -.l.-> PU3
+    PU3 -.i.-> PU4
+    PU4 -.c.-> PU5
+    
+    P0 -.r.-> PR1
+    PR1 -.i.-> PR2
+    PR2 -.v.-> PR3
+    PR3 -.a.-> PR4
+    PR4 -.t.-> PR5
+    PR5 -.e.-> PR6
+
+    style K fill:#f9fff,stroke:#ffff,stroke-width:3px
+    style PU5 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+    style PR6 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+```
+
+#### main keyword
+
 ```mermaid
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
@@ -85,7 +137,6 @@ graph LR
     
     style K fill:#f9fff,stroke:#ffff,stroke-width:3px
     style M3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
-    
 ```
 
 ### DFA chart for valid identifiers
