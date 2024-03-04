@@ -84,7 +84,7 @@ The list of used keywords is as follows:
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
 graph LR
-    K(("`*keyword_check*`"))
+    K(("`*KWD*`"))
     P0(("`*p_0*`"))
     PU1(("`*pu_1*`"))
     PU2(("`*pu_2*`"))
@@ -124,7 +124,7 @@ graph LR
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
 graph LR
-    K(("`*keyword_check*`"))
+    K(("`*KWD*`"))
     M0(("`*m_0*`"))
     M1(("`*m_1*`"))
     M2(("`*m_2*`"))
@@ -137,6 +137,45 @@ graph LR
     
     style K fill:#f9fff,stroke:#ffff,stroke-width:3px
     style M3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+```
+#### void
+
+```mermaid
+%%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
+
+graph LR
+    K(("`*KWD*`"))
+    V0(("`*v_0*`"))
+    V1(("`*v_1*`"))
+    V2(("`*v_2*`"))
+    V3(("`*v_3*`"))
+    
+    K  -.v.-> V0
+    V0 -.o.-> V1
+    V1 -.i.-> V2
+    V2 -.d.-> V3
+    
+    style K fill:#f9fff,stroke:#ffff,stroke-width:3px
+    style V3 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
+```
+
+#### int
+
+```mermaid
+%%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
+
+graph LR
+    K(("`*KWD*`"))
+    I0(("`*m_0*`"))
+    I1(("`*m_1*`"))
+    I2(("`*m_2*`"))
+    
+    K  -.i.-> I0
+    I0 -.n.-> I1
+    I1 -.t.-> I2
+    
+    style K fill:#f9fff,stroke:#ffff,stroke-width:3px
+    style I2 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
 ```
 
 ### DFA chart for valid identifiers
