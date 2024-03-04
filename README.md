@@ -1,6 +1,5 @@
 # dfa_java
-A dfa programmed in prolog that identifies any valid java 
-variable name.
+A dfa programmed in prolog that identifies any valid java variable name. It is important to note that I made several DFA's to identify some keywords *first* so technically, every string that is being processed starts at the $K$ state that checks for a common letter vocabulary.
 
 ## Rules
 - Can contain letters, digits, underscores, and dollar signs
@@ -13,11 +12,14 @@ variable name.
 
 ## States
 
-This DFA has the following states:
-
 ### $q_0$ 
 - Initial state. 
 - No inputs have been made and thus, it is not a valid state.
+- If the first input belongs in the $ kwd_alphabet = ['p','m','v','i']$. it will transition to the $K$ state
+
+### $K$
+- The "K" state is a keyword checking state, where other automata check if the string is a keyword first.
+- Every keyword automata starts in this state.
 
 ### $q_1$ 
 - **Valid state** where the variable has a name, such as 'a' or 'A'. Any number of inputs of alphabetic characters will loop this state.
@@ -42,6 +44,7 @@ This DFA has the following states:
 
 ## Regex 
 `^(?!_$)[a-zA-Z$_][a-zA-Z\d_$]*$`
+
 ### Breakdown
 - `^(?!_$)` means to make sure that the first position "^", by looking ahead "?" that there is NOT "!" a single "_" that simply ends "$".
 - `[a-zA-Z$_]` means any character in the range of a-z or A-Z or "$" or "_".
@@ -77,6 +80,8 @@ The list of used keywords is as follows:
 - main
 - void
 - int
+
+It is important to note a common characteristic to these DFA's and it is that any transition not displayed in these will take you to the DFA for valid identifiers.
 
 #### public & private keywords
 
@@ -189,6 +194,7 @@ graph LR
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
 graph LR
+    K(("`*kwd*`"))
     Q0(("`*q_0*`"))
     Q1(("`*q_1*`"))
     Q2(("`*q_2*`"))
@@ -196,6 +202,7 @@ graph LR
     Q4(("`*q_4*`"))
     Q5(("`*q_5*`"))
     
+    Q0 -. kwd_alphabet .-> Q1
     Q0 -. Letter .-> Q1
     Q0 -.'_'.-> Q2
     Q0 -.'$'.-> Q3

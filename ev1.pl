@@ -183,8 +183,5 @@ check(Input) :-
     accepts(InitialState, Input).
 
 dfa(Str):-
-    % not(keyword(Str)),
     atom_chars(Str, Chars),
     check(Chars),!.
-
-% dfa(Str):- keyword(Str),!.
