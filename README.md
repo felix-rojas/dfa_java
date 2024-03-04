@@ -15,7 +15,7 @@ A dfa programmed in prolog that identifies any valid java variable name. It is i
 ### $q_0$ 
 - Initial state. 
 - No inputs have been made and thus, it is not a valid state.
-- If the first input belongs in the $ kwd_alphabet = ['p','m','v','i']$. it will transition to the $K$ state
+- If the first input belongs in the kwd_alphabet $= ['p','m','v','i']$. it will transition to the $K$ state
 
 ### $K$
 - The "K" state is a keyword checking state, where other automata check if the string is a keyword first.
@@ -194,7 +194,7 @@ graph LR
 %%{init: {"flowchart": {"curve": "cardinal"}, {"htmlLabels": false}}}%%
 
 graph LR
-    K(("`*kwd*`"))
+    K(("`*K*`"))
     Q0(("`*q_0*`"))
     Q1(("`*q_1*`"))
     Q2(("`*q_2*`"))
@@ -202,7 +202,6 @@ graph LR
     Q4(("`*q_4*`"))
     Q5(("`*q_5*`"))
     
-    Q0 -. kwd_alphabet .-> Q1
     Q0 -. Letter .-> Q1
     Q0 -.'_'.-> Q2
     Q0 -.'$'.-> Q3
@@ -225,6 +224,7 @@ graph LR
     Q5 -.'$'.-> Q3
     Q5 -.Digit.-> Q4
     Q5 -.'_'.-> Q5
+    Q0 -. kwd_alphabet .-> K
     
     style Q0 fill:#f9fff,stroke:#ffff,stroke-width:3px
     style Q1 fill:#f9fff,stroke:#2DFE54,stroke-width:3px
@@ -238,4 +238,5 @@ graph LR
     linkStyle 11,12,13,14 stroke:magenta,stroke-width:2px;
     linkStyle 15,16,17 stroke:white,stroke-width:2px;
     linkStyle 18,19,20,21 stroke:red,stroke-width:2px;
+    linkStyle 22 stroke:cyan,stroke-width:2px;
 ```
