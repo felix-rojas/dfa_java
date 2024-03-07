@@ -15,7 +15,7 @@ A dfa programmed in prolog that identifies any valid java variable name. It is i
 ### $q_0$ 
 - Initial state. 
 - No inputs have been made and thus, it is not a valid state.
-- If the first input belongs in the kwd_alphabet $= ['p','m','v','i']$. it will transition to the $K$ state
+- If the first input belongs in the kwd_alphabet $= ['p','m','v','i','P','M','V','I']$. it will transition to the $K$ state
 
 ### $K$
 - The "K" state is a keyword checking state, where other automata check if the string is a keyword first.
@@ -79,6 +79,29 @@ _$
 __
 ```
 
+### Examples of not valid identifiers
+```
+public
+Public
+pUblIc
+main
+int
+inT
+iNT
+INT
+void
+private
+public
+,
+!
+##
+4
+4vo
+voiD
+mAin
+_
+```
+
 ### DFA chart for keywords
 
 Every reserved keyword could have its own DFA so I chose 5 keywords, where some of these overlap and some don't.
@@ -91,7 +114,9 @@ The list of used keywords is as follows:
 - void
 - int
 
-It is important to note a common characteristic to these DFA's and it is that any transition not displayed in these will take you to the DFA for valid identifiers.
+It is important to note common characteristics to these DFA's:
+- Any transition not displayed in these will take you to the DFA for valid identifiers.
+- The transitions are case insensitive, meaning "public" or "Public" will both be a keyword state. 
 
 #### public & private keywords
 

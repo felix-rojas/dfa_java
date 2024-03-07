@@ -40,40 +40,40 @@ kwd_accepting(i2).
 kwd_accepting(m3).
 
 % Common starting alphabet
-kwd_alphabet(['p','m','v','i']).
+kwd_alphabet(['p','m','v','i','P','M','V','I']).
 
 transition(q0, X, keyword_check):-
     kwd_alphabet(Kwd),
     member(X,Kwd).
 
-transition(keyword_check, X, p0):- X == 'p'.
-transition(p0, X, pr1):-           X == 'r'.
-transition(pr1, X, pr2):-          X == 'i'.
-transition(pr2, X, pr3):-          X == 'v'.
-transition(pr3, X, pr4):-          X == 'a'.
-transition(pr4, X, pr5):-          X == 't'.
-transition(pr5, X, pr6):-          X == 'e'.
+transition(keyword_check, X, p0):- X == 'p'; X=='P'.
+transition(p0, X, pr1):-           X == 'r'; X=='R'.
+transition(pr1, X, pr2):-          X == 'i'; X=='I'.
+transition(pr2, X, pr3):-          X == 'v'; X=='V'.
+transition(pr3, X, pr4):-          X == 'a'; X=='A'.
+transition(pr4, X, pr5):-          X == 't'; X=='T'.
+transition(pr5, X, pr6):-          X == 'e'; X=='E'.
 
-transition(p0, X, pu1)  :- X == 'u'.
-transition(pu1, X, pu2) :- X == 'b'.
-transition(pu2, X, pu3) :- X == 'l'.
-transition(pu3, X, pu4) :- X == 'i'.
-transition(pu4, X, pu5) :- X == 'c'.
+transition(p0, X, pu1)  :- X == 'u'; X=='U'.
+transition(pu1, X, pu2) :- X == 'b'; X=='B'.
+transition(pu2, X, pu3) :- X == 'l'; X=='L'.
+transition(pu3, X, pu4) :- X == 'i'; X=='I'.
+transition(pu4, X, pu5) :- X == 'c'; X=='C'.
 
-transition(keyword_check, X, m0):- X == 'm'.
-transition(m0, X, m1):-            X == 'a'.
-transition(m1, X, m2):-            X == 'i'.
-transition(m2, X, m3):-            X == 'n'.
+transition(keyword_check, X, m0):- X == 'm'; X=='M'.
+transition(m0, X, m1):-            X == 'a'; X=='A'.
+transition(m1, X, m2):-            X == 'i'; X=='I'.
+transition(m2, X, m3):-            X == 'n'; X=='N'.
 
 
-transition(keyword_check, X, v0):- X == 'v'.
-transition(v0, X, v1):-            X == 'o'.
-transition(v1, X, v2):-            X == 'i'.
-transition(v2, X, v3):-            X == 'd'.
+transition(keyword_check, X, v0):- X == 'v'; X=='V'.
+transition(v0, X, v1):-            X == 'o'; X=='O'.
+transition(v1, X, v2):-            X == 'i'; X=='I'.
+transition(v2, X, v3):-            X == 'd'; X=='D'.
 
-transition(keyword_check, X, i0):- X == 'i'.
-transition(i0, X, i1):-            X == 'n'.
-transition(i1, X, i2):-            X == 't'.
+transition(keyword_check, X, i0):- X == 'i'; X=='I'.
+transition(i0, X, i1):-            X == 'n'; X=='N'.
+transition(i1, X, i2):-            X == 't'; X=='T'.
 
 
 % Define the DFA states
