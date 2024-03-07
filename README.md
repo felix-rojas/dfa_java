@@ -45,10 +45,10 @@ A dfa programmed in prolog that identifies any valid java variable name. It is i
 ## Regex 
 
 ### Valid variable name Regex
-`(?!_\b)[a-zA-Z$_][a-zA-Z\d_$]*`
+`(?!_\s)[a-zA-Z$_][a-zA-Z\d_$]*`
 
 #### Breakdown
-- `(?!_\b)` means to make sure that the first position isn't an underscore on its own. Looking ahead "?" that there is NOT "!" a single "_" at the word boundary.
+- `(?!_\s)` means to make sure that the first position isn't an underscore on its own. Looking ahead "?" that there is NOT "!" a single "_" followed by any amount of spaces.
 - `[a-zA-Z$_]` means any character in the range of a-z or A-Z or "$" or "_".
 - `[a-zA-Z\d$_]*` means any character mentioned previously or any digit "\d" or "$" or "_". The asterisk (star operator) means there can be from 0 to any number of the characters stated in the group enclosed by brackets.
 - Finally the $ just means this is the end of the string.
@@ -59,7 +59,7 @@ A dfa programmed in prolog that identifies any valid java variable name. It is i
 #### Breakdown
 - `\b` indicates a word boundary
 - So basically it looks for the pattern of each of the capture groups (the keywords)
-- Keywords are *case sensitive*
+- Keywords are *case insensitive*
 
 ### Examples of valid identifiers
 ```
