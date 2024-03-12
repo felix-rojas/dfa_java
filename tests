@@ -1,13 +1,24 @@
-% All of these must be false
-dfa("12"),
-dfa("1_2"),
-dfa("1$2"),
-dfa("1 2"),
-dfa(" "),
-dfa(" _"),
-dfa("_ _"),
-dfa("$ ").
+[ev1], write("Loaded file").
 
+% All of these must be false
+dfa("12");
+dfa("1_2");
+dfa("1$2");
+dfa("1 2");
+dfa(" ");
+dfa(" _");
+dfa("_ _");
+dfa("_");
+dfa("1main");
+dfa("2mark");
+dfa("2_mark");
+dfa("2__mark");
+dfa("2_$");
+dfa("$ ").
+write("Previous output should be false").
+
+
+write("This should output: Accepted State, followed by true").
 % All of these must be true
 dfa("$astrid"),
 dfa("$$aa"),
@@ -17,6 +28,7 @@ dfa("$as1111"),
 dfa("$____$$$$"),
 dfa("$$$as$$"),
 dfa("$"),
+dfa("$12"),
 dfa("$$"),
 dfa("$_$"),
 dfa("a_"),
@@ -24,3 +36,35 @@ dfa("_a"),
 dfa("_9"),
 dfa("_$"),
 dfa("__").
+
+% All of these must NOT be detected as keywords
+write("This should output: Accepted State, followed by true").
+dfa("_public"),
+dfa("P$ublic"),
+dfa("pU1blIc"),
+dfa("main_"),
+dfa("_int"),
+dfa("__inT"),
+dfa("$iNT"),
+dfa("INT1"),
+dfa("void2_"),
+dfa("voiD$_"),
+dfa("privates"),
+dfa("publicity"),
+dfa("main_folder").
+
+% All of these must be detected as keywords
+write("This should output Keyword State, not an identifier, followed by true").
+dfa("public"),
+dfa("Public"),
+dfa("pUblIc"),
+dfa("main"),
+dfa("int"),
+dfa("inT"),
+dfa("iNT"),
+dfa("INT"),
+dfa("void"),
+dfa("voiD"),
+dfa("private"),
+dfa("public"),
+dfa("mAin").

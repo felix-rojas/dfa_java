@@ -148,6 +148,9 @@ transition(q4, X, q2) :-
 transition(q4, X, q4) :-
     char_type(X,digit).
 
+transition(q4, X, q5) :-
+    X == '_'.
+
 transition(q5, X, q1) :-
     char_type(X,alpha).
 
@@ -165,11 +168,11 @@ transition(q5, X, q5) :-
 
 accepts(State, []) :-
     kwd_accepting(State),!,
-    write("Keyword state\n").
+    write("Keyword state, not an identifier\n").
 
 accepts(State, []) :-
     accepting(State),
-    not(kwd_accepting(State)),
+    (not(kwd_accepting(State))),
     write("Accepted state\n").
 
 % iterate each head on string

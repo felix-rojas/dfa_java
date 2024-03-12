@@ -1,7 +1,20 @@
 # dfa_java
 A dfa programmed in prolog that identifies any valid java variable name. It is important to note that I made several DFA's to identify some keywords *first* so technically, every string that is being processed starts at the $K$ state that checks for a common letter vocabulary.
 
+This is important to note because *prolog* works on a *closed world assumption*. This implies if something is not known in the database, it will be *false* (this is known as *negation as failure* or *NAF*[^1]). 
+
+> "[...] To show that P is _false_ we do an exhaustive search for a proof of P. If every possible proof fails, ~P is 'inferred. This is the way the both PLANNER (Hewitt [1972]) and PROLOG (Rousseld [1975], Warren et al. [1977]) handle negation"
+
+Keith L. Clark, pg 114[^1] 
+
+I have only defined 5 keywords so any other keywords will be accepted as identifiers because they fall under the general rules for identifiers.
+
 ## Rules
+
+The rules used are the valid variable names, not the convention ones, as stated here [^2].
+
+These are the summarized rules for
+
 - Can contain letters, digits, underscores, and dollar signs
 - Must begin with a letter, '$' or  '_'
 - Cannot contain whitespace
@@ -9,6 +22,11 @@ A dfa programmed in prolog that identifies any valid java variable name. It is i
 - Cannot be a single underscore
 - Cannot start with a digit
 - Cannot be a reserved keyword
+
+## Complexity
+The overall complexity of this is $O(n)$ because the program goes state by state (char by char) on all cases.
+
+Since prolog works on a *NAF* basis, it will attempt to find any valid path. I made a kwd_alphabet $= ['p','m','v','i','P','M','V','I']$ so that only the initial character is compared against those and later just jump to the corresponding state.
 
 ## States
 
@@ -79,7 +97,7 @@ _$
 __
 ```
 
-### Examples of not valid identifiers
+### Examples of keywords
 ```
 public
 Public
@@ -92,14 +110,8 @@ INT
 void
 private
 public
-,
-!
-##
-4
-4vo
 voiD
 mAin
-_
 ```
 
 ### DFA chart for keywords
@@ -222,7 +234,7 @@ graph LR
 
 - Q0 represents the initial state
 - K represents the initial state for the keyword automata
-- Accepting states are defined in thick blue outline:
+- Accepting states are defined in thick green outline:
   - Q1, Q3, Q4, Q5
 - Letter represents any alphabetic character, regardless of capitalization
 
@@ -254,7 +266,7 @@ graph LR
     Q3 -.Digit.-> Q4
     Q3 -.'_'.-> Q5
     Q4 -.Letter.-> Q1
-    Q4 -.'_'.-> Q2
+    Q4 -.'_'.-> Q5
     Q4 -.Digit.-> Q4
     Q5 -.Letter.-> Q1
     Q5 -.'$'.-> Q3
@@ -276,3 +288,12 @@ graph LR
     linkStyle 18,19,20,21 stroke:red,stroke-width:2px;
     linkStyle 22 stroke:cyan,stroke-width:2px;
 ```
+
+## Running tests
+Simply feed the `tests` file to prolog as such: `prolog < tests`. 
+Each test is concatenated so that in each section they all succeed or fail.
+
+## References
+[^1]: Clark, Keith (1978). ["Negation as a failure"](http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf). Logic and Data Bases. Springer-Verlag. pp. 114. http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf
+
+[^2]: Oracle Corporation. (2022). Variables. [Java Tutorial]. Retrieved March 11, 2024, from [docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html)
