@@ -61,16 +61,16 @@ Since prolog works on a *NAF* basis, it will attempt to find any valid path. I m
 - This state is necessary to differentiate when there is a single underscore at the beginning or multiple ones. 
 
 ## Regex 
+There is a `regex_test.py` file that tests the regex expression that represents the implemented dfa. The regex capture group will match strings even when separated by any whitespace, whereas the DFA will fail at the presence of any whitespace. 
 
 ### Valid variable name Regex
-`(?!_\s)[a-zA-Z$_][a-zA-Z\d_$]*`
+`^[a-zA-Z$]|[_]+[a-zA-Z\d_$]+$`
 
 #### Breakdown
-- `(?!_\s)` means to make sure that the first position isn't an underscore on its own. Looking ahead "?" that there is NOT "!" a single "_" followed by any amount of spaces.
-- `[a-zA-Z$_]` means any character in the range of a-z or A-Z or "$" or "_".
-- `[a-zA-Z\d$_]*` means any character mentioned previously or any digit "\d" or "$" or "_". The asterisk (star operator) means there can be from 0 to any number of the characters stated in the group enclosed by brackets.
-- Finally the $ just means this is the end of the string.
-
+- `^[a-zA-Z$]` String can begin " ^ " with any alphabetic character or the dollar sign
+- `|[_]+` OR match if there's one or more underscores
+- `[a-zA-Z\d_$]+$` followed by a sequence that ends in any number of alphanumeric characters, underscores or dollar signs at least once
+  
 ### Keyword  Regex
 `(\bmain\b)|(\bvoid\b)|(\bint\b)|(\bprivate\b)|(\bpublic\b)`
 
@@ -292,6 +292,10 @@ graph LR
 ## Running tests
 Simply feed the `tests` file to prolog as such: `prolog < tests`. 
 Each test is concatenated so that in each section they all succeed or fail.
+
+The regex tests can be run just by executing the `regex_test.py` file which will test several cases. 
+
+There is also an added shell script named `get_java_identifiers.sh` which scraps the java reserved words and generates the `kwds.txt` file, in case they remove or add any new keywords as well.
 
 ## References
 [^1]: Clark, Keith (1978). ["Negation as a failure"](http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf). Logic and Data Bases. Springer-Verlag. pp. 114. http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf
