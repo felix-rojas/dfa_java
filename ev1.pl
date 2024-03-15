@@ -54,11 +54,42 @@ transition(pr3, X, pr4):-          X == 'a'; X=='A'.
 transition(pr4, X, pr5):-          X == 't'; X=='T'.
 transition(pr5, X, pr6):-          X == 'e'; X=='E'.
 
+transition(p0,  X, q1):-           X \= 'r', X \='R', char_type(X, alpha).
+transition(pr1, X, q1):-           X \= 'i', X \='I', char_type(X, alpha).
+transition(pr2, X, q1):-           X \= 'v', X \='V', char_type(X, alpha).
+transition(pr3, X, q1):-           X \= 'a', X \='A', char_type(X, alpha).
+transition(pr4, X, q1):-           X \= 't', X \='T', char_type(X,alpha).
+transition(pr5, X, q1):-           X \= 'e', X \='E', char_type(X,alpha).
+transition(pr6, X, q1):-           char_type(X,alpha).
+
+transition(p0,  X, q4):-           char_type(X,digit).
+transition(pr1, X, q4):-           char_type(X,digit).
+transition(pr2, X, q4):-           char_type(X,digit).
+transition(pr3, X, q4):-           char_type(X,digit).
+transition(pr4, X, q4):-           char_type(X,digit).
+transition(pr5, X, q4):-           char_type(X,digit).
+transition(pr6, X, q4):-           char_type(X,digit).
+
+
 transition(p0, X, pu1)  :- X == 'u'; X=='U'.
 transition(pu1, X, pu2) :- X == 'b'; X=='B'.
 transition(pu2, X, pu3) :- X == 'l'; X=='L'.
 transition(pu3, X, pu4) :- X == 'i'; X=='I'.
 transition(pu4, X, pu5) :- X == 'c'; X=='C'.
+
+transition(p0, X,  q1):-           X \= 'u', X \='U', char_type(X, alpha).
+transition(pu1, X, q1):-           X \= 'b', X \='B', char_type(X, alpha).
+transition(pu2, X, q1):-           X \= 'l', X \='L', char_type(X, alpha).
+transition(pu3, X, q1):-           X \= 'i', X \='I', char_type(X, alpha).
+transition(pu4, X, q1):-           X \= 'c', X \='C', char_type(X,alpha).
+transition(pu5, X, q1):-           char_type(X,alpha).
+
+transition(p0, X,  q4):-           char_type(X, digit).
+transition(pu1, X, q4):-           char_type(X, digit).
+transition(pu2, X, q4):-           char_type(X, digit).
+transition(pu3, X, q4):-           char_type(X, digit).
+transition(pu4, X, q4):-           char_type(X, digit).
+transition(pu5, X, q4):-           char_type(X, digit).
 
 transition(keyword_check, X, m0):- X == 'm'; X=='M'.
 transition(m0, X, m1):-            X == 'a'; X=='A'.
@@ -172,7 +203,6 @@ accepts(State, []) :-
 
 accepts(State, []) :-
     accepting(State),
-    (not(kwd_accepting(State))),
     write("Accepted state\n").
 
 % iterate each head on string
