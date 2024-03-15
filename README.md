@@ -1,4 +1,5 @@
 # dfa_java
+# Description
 A dfa programmed in prolog that identifies any valid java variable name. It is important to note that I made several DFA's to identify some keywords *first* so technically, every string that is being processed starts at the $K$ state that checks for a common letter vocabulary.
 
 This is important to note because *prolog* works on a *closed world assumption*. This implies if something is not known in the database, it will be *false* (this is known as *negation as failure* or *NAF*[^1]). 
@@ -23,12 +24,11 @@ These are the summarized rules for
 - Cannot start with a digit
 - Cannot be a reserved keyword
 
-## Complexity
-The overall complexity of this is $O(n)$ because the program goes state by state (char by char) on all cases.
+---
 
-Since prolog works on a *NAF* basis, it will attempt to find any valid path. I made a kwd_alphabet $= ['p','m','v','i','P','M','V','I']$ so that only the initial character is compared against those and later just jump to the corresponding state.
+# Models
 
-## States
+## Automata States
 
 ### $q_0$ 
 - Initial state. 
@@ -78,41 +78,6 @@ There is a `regex_test.py` file that tests the regex expression that represents 
 - `\b` indicates a word boundary
 - So basically it looks for the pattern of each of the capture groups (the keywords)
 - Keywords are *case insensitive*
-
-### Examples of valid identifiers
-```
-$astrid
-$$aa
-a$A$a$_
-A$a
-$as1111
-$____$$$$
-$$$as$$
-$_
-$
-a_
-_a
-_9
-_$
-__
-```
-
-### Examples of keywords
-```
-public
-Public
-pUblIc
-main
-int
-inT
-iNT
-INT
-void
-private
-public
-voiD
-mAin
-```
 
 ### DFA chart for keywords
 
@@ -288,6 +253,42 @@ graph LR
     linkStyle 18,19,20,21 stroke:red,stroke-width:2px;
     linkStyle 22 stroke:cyan,stroke-width:2px;
 ```
+# Tests
+
+## Examples of valid identifiers
+```
+$astrid
+$$aa
+a$A$a$_
+A$a
+$as1111
+$____$$$$
+$$$as$$
+$_
+$
+a_
+_a
+_9
+_$
+__
+```
+
+## Examples of keywords
+```
+public
+Public
+pUblIc
+main
+int
+inT
+iNT
+INT
+void
+private
+public
+voiD
+mAin
+```
 
 ## Running tests
 Simply feed the `tests` file to prolog as such: `prolog < tests`. 
@@ -296,6 +297,12 @@ Each test is concatenated so that in each section they all succeed or fail.
 The regex tests can be run just by executing the `regex_test.py` file which will test several cases. 
 
 There is also an added shell script named `get_java_identifiers.sh` which scraps the java reserved words and generates the `kwds.txt` file, in case they remove or add any new keywords as well.
+
+# Analysis
+## Complexity
+The overall complexity of this is $O(n)$ because the program goes state by state (char by char) on all cases.
+
+Since prolog works on a *NAF* basis, it will attempt to find any valid path. I made a kwd_alphabet $= ['p','m','v','i','P','M','V','I']$ so that only the initial character is compared against those and later just jump to the corresponding state.
 
 ## References
 [^1]: Clark, Keith (1978). ["Negation as a failure"](http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf). Logic and Data Bases. Springer-Verlag. pp. 114. http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf
