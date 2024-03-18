@@ -23,12 +23,22 @@ vector<string> generate_states(const string &keyword) {
 
 void generate_transitions(vector<string> &states) {
   cout << "% -------------------" << endl;
-  cout << "% Keyword "<< states[0] <<" Transitions" << endl;
+  cout << "% Keyword " << states[0] << " States" << endl;
   cout << "% -------------------" << endl;
-  
+
+  for (unsigned int i = 1; i < states.size(); i++) {
+    cout << "state(" << states[i] << ")." << endl;
+    if (i == states.size() - 1)
+      cout << "kwd_accepting(" << states[i] << ")." << endl;
+  }
+
+  cout << "% --------------------------------------" << endl;
+  cout << "% Keyword \'" << states[0] << "\' Transitions" << endl;
+  cout << "% --------------------------------------" << endl;
+
   cout << "transition(keyword_check,X," + states[1] + "):-" << endl;
-    cout << "\tX==\'" << states[0][0] << "\';" << endl;
-    cout << "\tX==\'" << char(std::toupper(states[0][0])) << "\'." << endl;
+  cout << "\tX==\'" << states[0][0] << "\';" << endl;
+  cout << "\tX==\'" << char(std::toupper(states[0][0])) << "\'." << endl;
 
   for (unsigned int i = 1; i < states.size() - 1; i++) {
     string temp1 = states[i];
@@ -45,12 +55,14 @@ void generate_transitions(vector<string> &states) {
     string temp1 = states[i];
     char state_lettters = states[0][i];
     cout << "transition(" + temp1 + ",X," + "q1" + "):-" << endl;
-    if (i != states.size()-1) {
-    cout << "\tX\\=\'" << state_lettters << "\'," << endl;
-    cout << "\tX\\=\'" << char(std::toupper(state_lettters)) << "\'," << endl;
-    cout << "\tchar_type(X,alpha)" << "." << endl;
+    if (i != states.size() - 1) {
+      cout << "\tX\\=\'" << state_lettters << "\'," << endl;
+      cout << "\tX\\=\'" << char(std::toupper(state_lettters)) << "\'," << endl;
+      cout << "\tchar_type(X,alpha)"
+           << "." << endl;
     } else {
-      cout << "\tchar_type(X,alpha)" << "." << endl;
+      cout << "\tchar_type(X,alpha)"
+           << "." << endl;
     }
   }
   cout << "% -----------------" << endl;
@@ -69,14 +81,8 @@ void generate_transitions(vector<string> &states) {
     string temp1 = states[i];
     char state_lettters = states[0][i];
     cout << "transition(" + temp1 + ",X," + "q4" + "):-" << endl;
-    if (i != states.size()-1) {
-    cout << "\tX\\=\'" << state_lettters << "\'," << endl;
-    cout << "\tX\\=\'" << char(std::toupper(state_lettters)) << "\'," << endl;
     cout << "\tchar_type(X,digit)"
          << "." << endl;
-    } else {
-      cout << "\tchar_type(X,alpha)" << "." << endl;
-    }
   }
   cout << "% -----------------" << endl;
   cout << "% Transitions to q5" << endl;
@@ -88,7 +94,6 @@ void generate_transitions(vector<string> &states) {
     cout << "\tX==\'_\'"
          << "." << endl;
   }
- 
 }
 
 int main() {
