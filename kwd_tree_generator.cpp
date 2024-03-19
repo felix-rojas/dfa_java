@@ -1,7 +1,6 @@
 #include <cctype>
 #include <fstream>
 #include <iostream>
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -21,7 +20,7 @@ vector<string> generate_states(const string &keyword) {
   return states;
 }
 
-void generate_transitions(vector<string> &states) {
+void generate_transitions(const vector<string> &states) {
   cout << "% -------------------" << endl;
   cout << "% Keyword " << states[0] << " States" << endl;
   cout << "% -------------------" << endl;
