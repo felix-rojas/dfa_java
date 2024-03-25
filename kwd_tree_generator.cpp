@@ -20,7 +20,7 @@ vector<string> generate_states(const string &keyword) {
   return states;
 }
 
-void generate_transitions(const vector<string> &states) {
+void keyword_states(const vector<string> &states) {
   cout << "% -------------------" << endl;
   cout << "% Keyword " << states[0] << " States" << endl;
   cout << "% -------------------" << endl;
@@ -30,7 +30,28 @@ void generate_transitions(const vector<string> &states) {
     if (i == states.size() - 1)
       cout << "kwd_accepting(" << states[i] << ")." << endl;
   }
+}
 
+void keyword_transitions(const vector<string> &states) {
+  cout << "% --------------------------------------" << endl;
+  cout << "% Keyword \'" << states[0] << "\' Transitions" << endl;
+  cout << "% --------------------------------------" << endl;
+
+  cout << "transition(keyword_check,X," + states[1] + "):-" << endl;
+  cout << "\tX==\'" << states[0][0] << "\';" << endl;
+  cout << "\tX==\'" << char(std::toupper(states[0][0])) << "\'." << endl;
+
+  for (unsigned int i = 1; i < states.size() - 1; i++) {
+    string temp1 = states[i];
+    string temp2 = states[i + 1];
+    char state_lettters = states[0][i];
+    cout << "transition(" + temp1 + ",X," + temp2 + "):-" << endl;
+    cout << "\tX==\'" << state_lettters << "\';" << endl;
+    cout << "\tX==\'" << char(std::toupper(state_lettters)) << "\'." << endl;
+  }
+}
+
+void generate_transitions(const vector<string> &states) {
   cout << "% --------------------------------------" << endl;
   cout << "% Keyword \'" << states[0] << "\' Transitions" << endl;
   cout << "% --------------------------------------" << endl;
