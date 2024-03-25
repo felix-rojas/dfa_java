@@ -2,6 +2,7 @@
 
 % All of these must be false
 dfa("12");
+dfa("1234567890");
 dfa("1_2");
 dfa("1$2");
 dfa("1 2");
