@@ -304,7 +304,17 @@ The overall complexity of this is $O(n)$ because the program goes state by state
 
 Since prolog works on a *NAF* basis, it will attempt to find any valid path. I made a kwd_alphabet $= ['p','m','v','i','P','M','V','I']$ so that only the initial character is compared against those and later just jump to the corresponding state.
 
+## Other algorithms
+KMP has to pre-process as well, but unlike the automaton, KMP has to construct the LPS *for every single keyword AND rule*, while the DFA requires constructing *once* and can do it for any string to search for. KMP would have to make the LPS array, which takes $O(k)$ where $k$ is the length of the pattern, append it to the string of length $n$ and look through it in linear time, so $O(k+n)$ [^3]. The construction for the DFA can be quite expensive, but for short pattern matching on short strings, it will always outperform KMP.
+
+For this particular example we would have to run KMP 5 times (one for each keyword listed), against each input. We would be basically end up doing a cartesian product of all possible combinations of the rules plus keywords compared against every single new string that enters through the KMP algorithm.
+
+And while $O(2^n)$ of construction time (because it has to branch out for each $n$ node) for the DFA sounds bad, for this case it is technically constant since it is done only once. As an example, let's use the 5 keywords defined. Those amount to 24 nodes. SO we have $(2^24)$ in time plus the length of all the input strings. Let us think of a Java program like Minecraft. Let's say that we want to look for those 5 keywords in all the source code, and assume the size is the one reported by the java decompiler by [this user on Quora](https://www.quora.com/How-many-lines-of-code-are-there-in-Minecraft) at around 300k. Let's assume each line has around 70 characters. Just for the 5 keywords listed, we would have a value of 70 * 300,000 * 5 = 105,000,000 which is *significantly larger* than 16,777,216 + 21,000,000. This is just for 5 keywords, ignoring the keyword size and assuming we aren't looking for *any* other pattern. 
+
+
 ## References
 [^1]: Clark, Keith (1978). ["Negation as a failure"](http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf). Logic and Data Bases. Springer-Verlag. pp. 114. http://www.doc.ic.ac.uk/~klc/NegAsFailure.pdf
 
 [^2]: Oracle Corporation. (2022). Variables. [Java Tutorial]. Retrieved March 11, 2024, from [docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html)
+
+[^3]: Lang, H.W. (2023). Knuth-Morris-Pratt Algorithm. Retrieved from [https://hwlang.de/algorithmen/pattern/kmpen.htm](https://hwlang.de/algorithmen/pattern/kmpen.htm) 
