@@ -305,7 +305,7 @@ The overall complexity of this is $O(n)$ because the program goes state by state
 Since prolog works on a *NAF* basis, it will attempt to find any valid path. I made a kwd_alphabet $= ['p','m','v','i','P','M','V','I']$ so that only the initial character is compared against those and later just jump to the corresponding state.
 
 ## Other algorithms
-KMP has to pre-process as well, but unlike the automaton, KMP has to construct the LPS *for every single keyword AND rule*, while the DFA requires constructing *once* and can do it for any string to search for. KMP would have to make the LPS array, which takes $O(k)$ where $k$ is the length of the pattern, append it to the string of length $n$ and look through it in linear time, so $O(k+n)$ [^3]. The construction for the DFA can be quite expensive, but for short pattern matching on short strings, it will always outperform KMP.
+KMP has to pre-process as well, but unlike the automaton, KMP has to construct the LPS *for every single keyword AND rule*, while the DFA requires constructing *once* and can do it for any string to search for. KMP would have to make the LPS array, which takes $O(k)$ where $k$ is the length of the pattern, append it to the string of length $n$ and look through it in linear time, so $O(k+n)$ [^3]. The construction for the DFA can be quite expensive, but for short pattern matching against several unknown strings, it will almost always outperorm KMP.
 
 For this particular example we would have to run KMP 5 times (one for each keyword listed), against each input. We would be basically end up doing a cartesian product of all possible combinations of the rules plus keywords compared against every single new string that enters through the KMP algorithm.
 
