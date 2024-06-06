@@ -1,17 +1,4 @@
 import re
-import os
-from time import process_time_ns
-
-
-def read_file(file_name):
-    file_dir = os.path.dirname(os.path.abspath(__name__))
-    path_to_file = os.path.join(file_dir, file_name)
-
-    if os.path.exists(path_to_file):
-        with open(path_to_file, "r") as file:
-            return [line.rstrip("\n") for line in file]
-    else:
-        print(f"{file_name} not found")
 
 
 def lps(pattern):
@@ -81,23 +68,3 @@ for s in valid_strings:
 
 for s in invalid_ids:
     parse_identifier(s)
-
-
-java_keywords = read_file("kwds.txt")
-java_program = read_file("java_program.txt")
-java_string = "".join(java_program)
-
-# Time test KMP vs regex
-
-print("Time test KMP vs regex")
-
-start = process_time_ns()
-for keyword in java_string:
-    parse_kwd(keyword)
-stop = process_time_ns()
-
-start1 = process_time_ns()
-for keyword in ["main", "void", "int", "private", "public"]:
-    kmp(keyword, java_string)
-stop1 = process_time_ns()
-print(f"Executed KMP in {(stop1 - start1)//1000} ms VS Regex in {(stop - start)//1000} ms")
